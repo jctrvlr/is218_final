@@ -58,19 +58,6 @@
       }
     }
 
-    public function setUsername($username) {
-      $this->username = $username;
-    }
-    public function getUsername() {
-      return $this->username;
-    }
-    public function setPassword($password) {
-      $this->password = $password;
-    }
-    public function getPassword() {
-      return $this->password;
-    }
-
     public function save($first_name, $last_name, $username, $password, $email, $activation) {
       //create the activasion code
       $activation = md5(uniqid(rand(),true));
@@ -89,28 +76,13 @@
         ));
         $id = $db->lastInsertId('memberID');
         //send email
-        $to = $email;
-        $subject = "Registration Confirmation";
-        $body = "<p>Thank you for registering at John's site.</p>
-        <p>To activate your account, please click on this link: <a href='".DIR."/index.php?controller=userController&action=activation&x=$id&y=$activation'>".DIR."/index.php?controller=userController&action=activation&x=$id&y=$activation</a></p>
-        <p>Regards Site Admin</p>";
-
-        // To send HTML mail, the Content-type header must be set
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-        // Additional headers
-        $headers .= "To: $first_name<$email>" . "\r\n";
-        $headers .= "From: No reply <jic6@njit.edu>" . "\r\n";
-
-        //Mail it
-        mail($to, $subject, $body, $headers);
+        $mail = new mail();
+        $mail->registration($id, $activation, $first_name, $email);
 
         //redirect to index page
         header('Location: index.php?controller=userController&action=joined');
         exit;
     } catch(PDOException $e) {
-        echo '<script>console.log("'.$e->getMessage().'");</script>';
 		    $error[] = $e->getMessage();
 		}
 
