@@ -1,12 +1,13 @@
 <?php
-//put your database connection in this class
   abstract class model {
-    private $guid;  
+    private $guid;
+    private $db;
+
     public function __construct() {
-      session_start();
+      $this->db = dbConn::getConnection();
       $this->guid = uniqid();
     }
     public function save() {
       $_SESSION[$this->guid] = (array) $this;
     }
-  }  
+  }
