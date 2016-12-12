@@ -13,6 +13,10 @@
             $error = 'You are not logged in.';
             header('Location: index.php?controller=userController&errors='.$error);
           }
+        } elseif($_GET['action'] == 'usertable') {
+          $table = new usertableview;
+          $table_html = $table->getHTML();
+          $this->html .= $table_html;
         } elseif($_GET['action'] == 'edit') {
           $user = new userModel;
           if($user->is_logged_in()){
