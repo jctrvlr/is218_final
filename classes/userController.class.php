@@ -79,8 +79,10 @@
               $this->html .= $form_html;
             }
           } else{
+            $formtype = $_GET['form'];
+            $errors = $_GET['errors'];
             $form = new userformview;
-    	      $form_html = $form->getHTML();
+            $form_html = $form->getHTML($errors, $formtype);
             $this->html .= $form_html;
 
           }

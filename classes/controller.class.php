@@ -63,7 +63,7 @@
                       			<li><a href="index.php">Home</a></li>
                       			<li style="float: right;" ><a href="index.php?controller=userController&action=logout">Logout</a></li>
                       			<li style="float: right;" ><a href="index.php?controller=userController&action=profile">Profile</a></li>
-
+                            <li style="float: right;" ><a href="index.php?controller=userController&action=usertable">List of Users</a></li>
                       		</ul>
                       	</div>';
         }
