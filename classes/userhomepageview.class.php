@@ -19,7 +19,7 @@
        $row = $user->get_user_info($username);
        $usermessage = '';
        if($row['bio'] == '' && $row['avtr_url'] == 'img/default_avatar.png'){
-         $usermessage = '<div class="alert>Go to your profile to add a profile picture, and write a bio so people know more about you!</div>';
+         $usermessage = '<div class="alert">Go to your profile to add a profile picture, and write a bio so people know more about you!</div>';
        } elseif($row['bio'] == '') {
          $usermessage = '<div class="alert">Go to your profile to add to your bio so people know more about you!</div>';
        }

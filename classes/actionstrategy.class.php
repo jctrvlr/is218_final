@@ -24,11 +24,22 @@
         case "active":
           $this->strategy = $this->active();
           break;
+        case "joined":
+          $this->strategy = $this->joined();
+          break;
       }
     }
 
     public function runstrat(){
       return $this->strategy;
+    }
+
+    public function joined(){
+      $message = 'Check your email to activate your account!';
+      $formtype = '';
+      $form = new userformview;
+      $form_html = $form->getHTML($message, $formtype);
+      return $form_html;
     }
 
     public function profile(){
@@ -65,8 +76,8 @@
     }
     public function activation($get){
       //collect values from the url
-      $memberID = trim($get['x']);
-      $activat= trim($get['y']);
+      $memberID = trim($_GET['x']);
+      $activat= trim($_GET['y']);
       echo $activat;
 
       //if id is number and the active token is not empty carry on
