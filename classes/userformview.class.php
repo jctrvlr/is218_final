@@ -85,6 +85,8 @@
          $form = $form_signin;
        } elseif($form == 'sign_up'){
          $form = $form_signup;
+       } else{
+         $form = $form_signin;
        }
        return $form;
     }
